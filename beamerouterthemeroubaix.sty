@@ -1,0 +1,80 @@
+\RequirePackage{fontspec} % Allows using custom font. MUST be before loading the theme!
+\RequirePackage{pgfplots}
+\RequirePackage{hyperref}
+\RequirePackage{tikz}
+\RequirePackage{makecell}
+\pgfplotsset{compat=1.18}
+
+\newlength{\marginedPaperWidth}{\paperwidth - 0.2cm}
+
+\setbeamertemplate{section in toc}{%
+  {\color{accent1}\inserttocsectionnumber.}~\inserttocsection}
+\setbeamercolor{subsection in toc}{bg=white,fg=black}
+\setbeamercolor{section in toc}{bg=white,fg=black}
+\setbeamertemplate{subsection in toc}{%
+  \hspace{1.2em}{\color{accent1}\rule[0.3ex]{3pt}{3pt}}~\inserttocsubsection\par}
+
+
+\defbeamertemplate*{frametitle}{lucid}[1][]{
+  \vskip0.5cm%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
+    \begin{tikzpicture}
+    \useasboundingbox(0,0) rectangle(\the\paperwidth,1.2);
+    {\usebeamercolor[fg]{frametitle-left}}
+    \fill[color=frametitle-left.fg] (0.2,0) rectangle(\the\marginedPaperWidth,1.2);
+     \ifx\insertframesubtitle\@empty%
+        {\node[anchor=west] at (0.3,0.61){\usebeamerfont{frametitle}\insertframetitle};}
+        \else%
+        {\node[anchor= west] at (0.2,0.81){\usebeamerfont{frametitle}\insertframetitle};%
+         \node[anchor= west] at (0.4,0.25){\usebeamerfont{framesubtitle}\insertframesubtitle};}%
+        \fi
+    \end{tikzpicture}
+  \end{beamercolorbox}
+}
+
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  {\color{accent1} \hrule height 1pt}
+  \hbox{
+      \begin{beamercolorbox}[wd=.6\paperwidth,ht=12pt,dp=9pt,left,leftskip=5pt,rightskip=0pt]{section}%
+    \insertnavigation{.58\paperwidth}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=12pt,dp=9pt,leftskip=0pt,right,rightskip=10pt]{section}%
+    \usebeamerfont{title in head/foot} \insertsubtitle \hskip 5pt 
+    \scalebox{.55}{$\blacksquare$} \hskip 5pt 
+    \insertframenumber{} / \inserttotalframenumber
+  \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+\makeatother
+
+
+\setbeamertemplate{title page}{
+    \vspace{7em}
+    \begingroup
+        \centering
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,center]{title}
+        \usebeamerfont{title}\inserttitle\par%
+        \end{beamercolorbox}%
+        \vskip0.5em\par
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,center]{author}
+        \usebeamerfont{author}\insertauthor
+        \end{beamercolorbox}
+        \vskip-1em
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,center]{institute}
+        \usebeamerfont{institute}\insertinstitute
+        \end{beamercolorbox}
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,center]{date}
+        \usebeamerfont{date}\insertdate
+        \end{beamercolorbox}\vskip0.5em
+        % ------------------------
+        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \endgroup
+    \vfill
+}

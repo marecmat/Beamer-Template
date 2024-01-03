@@ -1,0 +1,81 @@
+\documentclass[aspectratio=169,xcolor=dvipsnames, t]{beamer}
+\usetheme{roubaix}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE CONFIGURATION
+%----------------------------------------------------------------------------------------
+\title[short title]{Long Title of the Presentation} 
+% The short title appears at the bottom of every slide, the full title is only on the title page
+% Subtitle is used as the footline text
+\subtitle{author et al., [conf name+year]}
+\author[Surname]{Name Surname}
+\institute[lab]{Name of the lab and/or institution}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+\begin{frame}[plain]
+    \maketitle
+\end{frame}
+\begin{frame}[plain]{Overview}
+    \tableofcontents
+\end{frame}
+
+\section{section 1}
+\begin{frame}[t]{This is a long slide title with details}
+    \framesubtitle{with a subtitle}
+    \begin{itemize}
+        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+        \item Nam cursus est eget velit posuere pellentesque
+        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+    \end{itemize}
+\end{frame}
+\section{Long section two title}
+\begin{frame}[t]{Another long slide with details}
+    Test of the template I'm writing. In this slide, the $(u_s, p)$ formulation for the Biot model is given as 
+    \begin{equation}
+        \begin{aligned}
+            \nabla \cdot \boldsymbol{\hat{\sigma}}^s + \tilde \rho \omega^2 \boldsymbol u^s + \tilde \gamma \boldsymbol \nabla p &= 0, \\
+            \frac{\nabla^2 p}{\tilde \rho_{22} \omega^2} - \frac{\tilde \gamma}{\phi^2} \nabla \cdot \boldsymbol u^s + \frac{1}{\tilde R}p &= 0,
+        \end{aligned}
+        \label{eq:up_motion_equations}
+    \end{equation}    
+\end{frame}
+\section{un titre de section}
+\begin{frame}{Blocks of Highlighted Text}
+    In this slide, some important text will be \alert{highlighted} because it's important.
+
+    \begin{block}{Block}
+        Sample text
+    \end{block}
+
+    \begin{alertblock}{Alertblock}
+        Sample text in red box
+    \end{alertblock}
+
+    \begin{examples}
+        Sample text in green box. The title of the block is ``Examples".
+    \end{examples}
+\end{frame}
+
+\begin{frame}[t]{Test with columns }
+    \begin{columns}[c]
+
+        \column{.45\textwidth} 
+        \textbf{Heading}
+        \begin{enumerate}
+            \item item 1 
+            \item item 2
+            \item and another item
+        \end{enumerate}
+
+        \column{.5\textwidth}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
+
+    \end{columns}
+\end{frame}
+\end{document}

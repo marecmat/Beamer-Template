@@ -1,0 +1,38 @@
+% define colors
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{accent2}{HTML}{D77A61}
+\definecolor{accent1}{HTML}{735CDD}
+\definecolor{accent1dark}{HTML}{1F2232}
+
+\setbeamercolor{background canvas}{bg=background}
+\usecolortheme[named=accent1dark]{structure}
+\setbeamercolor{titlelike}{parent=structure}
+
+% blocks color
+\setbeamercolor{block title}{bg=accent1, fg=white}
+\setbeamercolor{block body}{bg=accent1!20!background}
+\setbeamercolor{block title example}{bg=accent1, fg=white}
+\setbeamercolor{block body example}{bg=accent1!50!white}
+\setbeamercolor{block title alerted}{bg=accent2, fg=white}
+\setbeamercolor{block body alerted}{bg=accent2!50!white}
+\setbeamercolor{alerted text}{fg=accent2}
+
+% Frame title 
+\setbeamercolor{frametitle-left}{fg=accent1}
+\setbeamercolor{frametitle}{fg=accent1}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{framesubtitle}{size=\small}
+
+\setbeamercolor{section in head/foot}{fg=accent1dark}
+\setbeamertemplate{section in head/foot shaded}{\color{gray!50!white}\usebeamertemplate{section in head/foot}}
+\setbeamercolor{mini frame}{bg=white, fg=accent1dark}
+
+% for title page and final page
+\setbeamercolor{title}{fg=accent1}
+\setbeamercolor{subtitle}{fg=accent1}
+\setbeamercolor{author}{fg=accent1}
+\setbeamercolor{institute}{fg=accent1}
+
+\setbeamercolor*{itemize item}{fg=accent1}
+\setbeamercolor*{itemize subitem}{fg=accent1}
+\setbeamercolor*{normal text}{fg=accent1dark}
