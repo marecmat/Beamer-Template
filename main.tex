@@ -1,6 +1,8 @@
 \documentclass[aspectratio=169,xcolor=dvipsnames, t]{beamer}
 \usetheme{roubaix}
 
+\addbibresource{main.bib}
+
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE CONFIGURATION
 %----------------------------------------------------------------------------------------
@@ -11,6 +13,7 @@
 \author[Surname]{Name Surname}
 \institute[lab]{Name of the lab and/or institution}
 \date{\today} % Date, can be changed to a custom date
+
 
 \begin{document}
 %----------------------------------------------------------------------------------------
@@ -27,10 +30,10 @@
 \begin{frame}[t]{This is a long slide title with details}
     \framesubtitle{with a subtitle}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit\footcite{adamou2004}
         \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
         \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
+        \item Nam cursus est eget velit posuere pellentesque\footcite{kiefer2019}
         \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
     \end{itemize}
 \end{frame}
@@ -48,7 +51,6 @@
 \section{un titre de section}
 \begin{frame}{Blocks of Highlighted Text}
     In this slide, some important text will be \alert{highlighted} because it's important.
-
     \begin{block}{Block}
         Sample text
     \end{block}

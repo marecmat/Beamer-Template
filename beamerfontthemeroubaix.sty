@@ -1,29 +1,40 @@
 \mode<presentation>
 
+\usefonttheme[onlymath]{serif}
+
+%\setsansfont[
+%    %ItalicFont={Aleo Thin},%
+%    %BoldFont={Aleo ExtraBold},%
+%    %BoldItalicFont={Aleo Variable Italic}
+%]{Futura}
+%
+
 %%%%%%%%%%%% fonts
-\newfontfamily\aleo{Aleo}
+\newfontfamily\titre{Futura}
 \newfontfamily\gillsans{Gill Sans}
-\newfontfamily\futura{Futura}
+\newfontfamily\aleo{Aleo Black}
 
-\setbeamerfont{structure}{family=\futura}
+\setbeamerfont{structure}{family=\titre}
 
-\setbeamerfont{title}{size=\huge,series=\aleo,parent=structure}
-\setbeamerfont{subtitle}{size=\normalsize,series=\aleo,parent=title}
+\setbeamerfont{title}{size=\huge,series=\titre,parent=structure}
+\setbeamerfont{subtitle}{size=\normalsize,series=\titre,parent=title}
 
 \setbeamerfont{date}{size=\scriptsize,series=\mdseries,parent=structure}
 \setbeamerfont{author}{size=\normalsize,parent=title}
 \setbeamerfont{institute}{size=\scriptsize,series=\mdseries,parent=structure}
 
-\setbeamerfont{section in toc}{size=\Large,series=\aleo,parent=structure}
-\setbeamerfont{section in head/foot}{series=\aleo,size=\tiny,parent=structure}
-\setbeamerfont{subsection in toc}{series=\aleo,size=\small,series=\mdseries,parent={section in toc}}
+\setbeamerfont{section in toc}{size=\Large,series=\titre,parent=structure}
+\setbeamerfont{section in head/foot}{series=\titre,size=\tiny,parent=structure}
+\setbeamerfont{subsection in toc}{series=\titre,size=\small,series=\mdseries,parent={section in toc}}
 
-\setbeamerfont{frametitle}{size=\LARGE,series=\aleo,parent=structure}
+\setbeamerfont{frametitle}{size=\LARGE,series=\titre,parent=structure}
 \setbeamerfont{framesubtitle}{parent=frametitle,size=\Large}
 
 \setbeamerfont{caption}{size=\footnotesize}
 \setbeamerfont{item}{parent=structure,series=\mdseries}
 \setbeamerfont{block title}{size=\large,series=\mdseries,parent={structure,block body}}
 
+\setbeamerfont{footnote}{size=\tiny, series=\titre}%, series=\aleo}
+\setbeamerfont{footnote mark}{family=\aleo, series=\aleo}
 \mode
 <all>

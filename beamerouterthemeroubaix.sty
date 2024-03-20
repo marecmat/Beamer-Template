@@ -1,11 +1,43 @@
 \RequirePackage{fontspec} % Allows using custom font. MUST be before loading the theme!
 \RequirePackage{pgfplots}
 \RequirePackage{hyperref}
+\RequirePackage[style=authoryear,giveninits=true,uniquename=init]{biblatex}
+
 \RequirePackage{tikz}
 \RequirePackage{makecell}
 \pgfplotsset{compat=1.18}
 
 \newlength{\marginedPaperWidth}{\paperwidth - 0.2cm}
+\renewcommand\footnoterule{}
+
+%\DeclareFieldFormat{myvolume}{\textbf{\bibcplstring{volume}\addcolon\space#1}}
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\space [\printnames[family]{labelname}%
+   \setunit{\addcomma\space}
+   \printfield{journaltitle}%
+   \setunit{\space}
+   \textbf{\printfield{volume}}%
+   \setunit{\addcomma\space}
+   \printfield{number}%
+   \setunit{\addcomma\space}
+   \printlabeldateextra]}
+  {\space}
+  {\usebibmacro{postnote}}
+
+  \renewbibmacro*{name:andothers}{% Based on name:andothers from biblatex.def
+  \ifboolexpr{
+    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+    and
+    test \ifmorenames
+  }
+    {\ifnumgreater{\value{liststop}}{1}
+       {\finalandcomma}
+       {}%
+     \andothersdelim\bibstring[\emph]{andothers}}
+    {}}
+
+
 
 \setbeamertemplate{section in toc}{%
   {\color{accent1}\inserttocsectionnumber.}~\inserttocsection}
