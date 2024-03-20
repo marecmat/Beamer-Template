@@ -9,8 +9,6 @@
 
 \newlength{\marginedPaperWidth}{\paperwidth - 0.2cm}
 \renewcommand\footnoterule{}
-
-%\DeclareFieldFormat{myvolume}{\textbf{\bibcplstring{volume}\addcolon\space#1}}
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\usebibmacro{prenote}}
   {\space [\printnames[family]{labelname}%
@@ -48,7 +46,7 @@
 
 
 \defbeamertemplate*{frametitle}{lucid}[1][]{
-  \vskip0.5cm%
+  \vskip0.2cm%
     \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
     \begin{tikzpicture}
     \useasboundingbox(0,0) rectangle(\the\paperwidth,1.2);
@@ -57,8 +55,8 @@
      \ifx\insertframesubtitle\@empty%
         {\node[anchor=west] at (0.3,0.61){\usebeamerfont{frametitle}\insertframetitle};}
         \else%
-        {\node[anchor= west] at (0.2,0.81){\usebeamerfont{frametitle}\insertframetitle};%
-         \node[anchor= west] at (0.4,0.25){\usebeamerfont{framesubtitle}\insertframesubtitle};}%
+        {\node[anchor= west] at (0.3,0.81){\usebeamerfont{frametitle}\insertframetitle};%
+         \node[anchor= west] at (0.3,0.25){\usebeamerfont{framesubtitle}\insertframesubtitle};}%
         \fi
     \end{tikzpicture}
   \end{beamercolorbox}
