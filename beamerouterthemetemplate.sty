@@ -7,17 +7,32 @@
 \RequirePackage{makecell}
 \pgfplotsset{compat=1.18}
 
+\usetikzlibrary{arrows.meta, decorations.markings, tikzmark,decorations.pathreplacing,calligraphy,positioning}
+
+% Handles backup slides and stops the slide counting within the \backupbegin and \backupend mimicking a kind of environment
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+
+
 \newlength{\marginedPaperWidth}{\paperwidth - 0.2cm}
 \renewcommand\footnoterule{}
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\usebibmacro{prenote}}
   {\space [\printnames[family]{labelname}%
    \setunit{\addcomma\space}
-   \printfield{journaltitle}%
-   \setunit{\space}
-   \textbf{\printfield{volume}}%
-   \setunit{\addcomma\space}
-   \printfield{number}%
+   \iffieldequalstr{entrytype}{book}
+   {\printfield{title}}
+   {
+     \printfield{journaltitle}%
+     \setunit{\space}
+     \textbf{\printfield{volume}}%
+     (\printfield{number})%
+   }
    \setunit{\addcomma\space}
    \printlabeldateextra]}
   {\space}
@@ -49,14 +64,14 @@
   \vskip0.2cm%
     \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
     \begin{tikzpicture}
-    \useasboundingbox(0,0) rectangle(\the\paperwidth,1.2);
+    \useasboundingbox(0,0) rectangle(\the\paperwidth,1);
     {\usebeamercolor[fg]{frametitle-left}}
-    \fill[color=frametitle-left.fg] (0.2,0) rectangle(\the\marginedPaperWidth,1.2);
+    \fill[color=frametitle-left.fg] (0.2,0) rectangle(\the\marginedPaperWidth,1);
      \ifx\insertframesubtitle\@empty%
-        {\node[anchor=west] at (0.3,0.61){\usebeamerfont{frametitle}\insertframetitle};}
+        {\node[anchor=west] at (0.3,0.5){\usebeamerfont{frametitle}\insertframetitle};}
         \else%
-        {\node[anchor= west] at (0.3,0.81){\usebeamerfont{frametitle}\insertframetitle};%
-         \node[anchor= west] at (0.3,0.25){\usebeamerfont{framesubtitle}\insertframesubtitle};}%
+        {\node[anchor= west] at (0.3,0.8){\usebeamerfont{frametitle}\insertframetitle};%
+         \node[anchor= west] at (0.3,0.2){\usebeamerfont{framesubtitle}\insertframesubtitle};}%
         \fi
     \end{tikzpicture}
   \end{beamercolorbox}
@@ -71,7 +86,7 @@
     \insertnavigation{.58\paperwidth}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.4\paperwidth,ht=12pt,dp=9pt,leftskip=0pt,right,rightskip=10pt]{section}%
-    \usebeamerfont{title in head/foot} \insertsubtitle \hskip 5pt 
+    \usebeamerfont{section in head/foot} \insertsubtitle \hskip 5pt 
     \scalebox{.55}{$\blacksquare$} \hskip 5pt 
     \insertframenumber{} / \inserttotalframenumber
   \end{beamercolorbox}
@@ -80,31 +95,25 @@
 }
 \makeatother
 
-
 \setbeamertemplate{title page}{
-    \vspace{7em}
+    \vspace{3em}
     \begingroup
         \centering
         % ------------------------
-        \begin{beamercolorbox}[sep=8pt,center]{title}
-        \usebeamerfont{title}\inserttitle\par%
+        \begin{beamercolorbox}[sep=0pt,left,leftskip=5pt]{title}
+        \usebeamerfont{author}\insertshorttitle \\
+        \usebeamerfont{title}\inserttitle \par
         \end{beamercolorbox}%
-        \vskip0.5em\par
-        % ------------------------
-        \begin{beamercolorbox}[sep=8pt,center]{author}
-        \usebeamerfont{author}\insertauthor
-        \end{beamercolorbox}
-        \vskip-1em
-        % ------------------------
-        \begin{beamercolorbox}[sep=8pt,center]{institute}
-        \usebeamerfont{institute}\insertinstitute
-        \end{beamercolorbox}
-        % ------------------------
-        \begin{beamercolorbox}[sep=8pt,center]{date}
-        \usebeamerfont{date}\insertdate
-        \end{beamercolorbox}\vskip0.5em
-        % ------------------------
-        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+        \vskip3em\par
+        \hbox{
+          \begin{beamercolorbox}[,leftskip=5pt,sep=0pt,wd=.7\textwidth,left]{author}
+            \usebeamerfont{author}\insertauthor
+            \vskip1em\par
+            \usebeamerfont{institute}\insertinstitute
+            \vskip1em\par
+            \usebeamerfont{date}\insertdate
+        \end{beamercolorbox}~
+        }    
     \endgroup
     \vfill
 }

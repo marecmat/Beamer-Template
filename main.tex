@@ -1,7 +1,11 @@
-\documentclass[aspectratio=169,xcolor=dvipsnames, t]{beamer}
-\usetheme{roubaix}
+\documentclass[9pt,aspectratio=169,xcolor=dvipsnames, t]{beamer}
+\usetheme{template}
 
 \addbibresource{main.bib}
+
+
+
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE CONFIGURATION
@@ -19,9 +23,21 @@
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
+% Put a background for the title slide
+% \begin{document}
+% {
+%     \usebackgroundtemplate{\includegraphics[width=\paperwidth]{figures/title_background.pdf}}
+%     \begin{frame}[plain]
+%         \maketitle
+%         \vspace*{2em}
+%         \includegraphics[height=60pt]{figures/logos.png}
+%     \end{frame}
+% }
+
 \begin{frame}[plain]
     \maketitle
 \end{frame}
+
 \begin{frame}[plain]{Overview}
     \tableofcontents
 \end{frame}
