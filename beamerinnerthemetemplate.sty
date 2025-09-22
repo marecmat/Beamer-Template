@@ -3,11 +3,27 @@
 \setbeamertemplate{navigation symbols}{} % No navigation 
 \setbeamertemplate{headline}{} % No mini frames at the top of the slide
 \setbeamertemplate{blocks}[rounded][shadow=true]
-\setbeamertemplate{mini frame}[box] % Navigation as squares
-\setbeamertemplate{mini frame in current subsection}[box]
+
 \setbeamertemplate{itemize items}[square]
 \setbeamertemplate{sections/subsections in toc}[square]
 
+\makeatletter
+\setbeamertemplate{mini frames}{
+    \begin{pgfpicture}{2pt}{0pt}{.1cm}{.1cm}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint
+            {\the\dimexpr0.6\beamer@boxsize\relax}
+            {\the\dimexpr0.6\beamer@boxsize\relax}}
+    \pgfusepath{fill,stroke}
+    \end{pgfpicture}}
+\setbeamertemplate{mini frame in current subsection}{
+    \begin{pgfpicture}{2pt}{0pt}{.1cm}{.1cm}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint
+            {\the\dimexpr0.6\beamer@boxsize\relax}
+            {\the\dimexpr0.6\beamer@boxsize\relax}}
+    \pgfsetfillcolor{section in head/foot.bg}
+    \pgfusepath{fill,stroke}
+    \end{pgfpicture}}
+\makeatother
 %% Sommaire parameters if a slide between each section is needed
 % \AtBeginSection[]{
 %   \begin{frame}{Outline}

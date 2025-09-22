@@ -9,48 +9,40 @@
 
 \usetikzlibrary{arrows.meta, decorations.markings, tikzmark,decorations.pathreplacing,calligraphy,positioning}
 
+% \newlength{\marginedPaperWidth}{\paperwidth - 0.5cm}
 % Handles backup slides and stops the slide counting within the \backupbegin and \backupend mimicking a kind of environment
-\newcommand{\backupbegin}{
-   \newcounter{finalframe}
-   \setcounter{finalframe}{\value{framenumber}}
-}
-\newcommand{\backupend}{
-   \setcounter{framenumber}{\value{finalframe}}
-}
+\newenvironment{backup}
+  {\newcounter{finalframe}\setcounter{finalframe}{\value{framenumber}}}
+  {\setcounter{framenumber}{\value{finalframe}}}
 
-
-\newlength{\marginedPaperWidth}{\paperwidth - 0.2cm}
 \renewcommand\footnoterule{}
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\usebibmacro{prenote}}
   {\space [\printnames[family]{labelname}%
    \setunit{\addcomma\space}
-   \iffieldequalstr{entrytype}{book}
-   {\printfield{title}}
-   {
-     \printfield{journaltitle}%
-     \setunit{\space}
-     \textbf{\printfield{volume}}%
-     (\printfield{number})%
-   }
-   \setunit{\addcomma\space}
+   \iffieldequalstr{entrytype}{thesis}{\printfield{title},}{}
+   \iffieldequalstr{entrytype}{book}{\printfield{title},}{} 
+   \iffieldequalstr{entrytype}{article}{
+   \printfield{journaltitle}%
+   \setunit{\space}
+   \textbf{\printfield{volume}}%
+   (\printfield{number})%
+   \setunit{\addcomma\space}}{}
    \printlabeldateextra]}
   {\space}
   {\usebibmacro{postnote}}
 
-  \renewbibmacro*{name:andothers}{% Based on name:andothers from biblatex.def
-  \ifboolexpr{
-    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-    and
-    test \ifmorenames
-  }
-    {\ifnumgreater{\value{liststop}}{1}
-       {\finalandcomma}
-       {}%
-     \andothersdelim\bibstring[\emph]{andothers}}
-    {}}
-
-
+\renewbibmacro*{name:andothers}{% Based on name:andothers from biblatex.def
+\ifboolexpr{
+  test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+  and
+  test \ifmorenames
+}
+  {\ifnumgreater{\value{liststop}}{1}
+      {\finalandcomma}
+      {}%
+    \andothersdelim\bibstring[\emph]{andothers}}
+  {}}
 
 \setbeamertemplate{section in toc}{%
   {\color{accent1}\inserttocsectionnumber.}~\inserttocsection}
@@ -62,11 +54,11 @@
 
 \defbeamertemplate*{frametitle}{lucid}[1][]{
   \vskip0.2cm%
-    \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1cm]{frametitle} 
     \begin{tikzpicture}
     \useasboundingbox(0,0) rectangle(\the\paperwidth,1);
     {\usebeamercolor[fg]{frametitle-left}}
-    \fill[color=frametitle-left.fg] (0.2,0) rectangle(\the\marginedPaperWidth,1);
+    \fill[color=frametitle-left.fg] (0.2,0) rectangle (0,1);
      \ifx\insertframesubtitle\@empty%
         {\node[anchor=west] at (0.3,0.5){\usebeamerfont{frametitle}\insertframetitle};}
         \else%
@@ -77,23 +69,21 @@
   \end{beamercolorbox}
 }
 
-\makeatletter
 \setbeamertemplate{footline}{%
   \leavevmode%
-  {\color{accent1} \hrule height 1pt}
+  {\color{accent1} \hrule height 0pt}
   \hbox{
-      \begin{beamercolorbox}[wd=.6\paperwidth,ht=12pt,dp=9pt,left,leftskip=5pt,rightskip=0pt]{section}%
+      \begin{beamercolorbox}[wd=.65\paperwidth,ht=9pt,dp=9pt,left,leftskip=0pt,rightskip=0pt]{section}%
     \insertnavigation{.58\paperwidth}
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=12pt,dp=9pt,leftskip=0pt,right,rightskip=10pt]{section}%
-    \usebeamerfont{section in head/foot} \insertsubtitle \hskip 5pt 
-    \scalebox{.55}{$\blacksquare$} \hskip 5pt 
-    \insertframenumber{} / \inserttotalframenumber
-  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=9pt,dp=9pt,leftskip=0pt,right,rightskip=0pt]{section}%
+      \usebeamerfont{section in head/foot} \insertsubtitle \hskip 5pt 
+      \scalebox{.55}{$\blacksquare$} \hskip 5pt 
+      \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}
   }%
   \vskip0pt%
 }
-\makeatother
 
 \setbeamertemplate{title page}{
     \vspace{3em}
